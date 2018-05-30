@@ -6,7 +6,8 @@
  * @return string
  */
 function iconic_get_app_url() {
-	return 'https://iconic-app.local';
+	global $config;
+	return $config['session']['our_url']; //http://iconic-app.local
 }
 
 /**
@@ -126,12 +127,14 @@ function iconic_url_exists( $url ) {
  * @return string
  */
 function iconic_add_auth_params( $url ) {
+	global $config;
+	print_r($config);
 	$params = array(
-		'app_name'     => 'WooCommerce App',
-		'scope'        => 'read_write', // 'read', 'write', 'read_write'
+		'app_name'     => $config['woocommerce']['app_name'], // 'WooCommerce App'
+		'scope'        => $config['woocommerce']['scope'], // 'read', 'write', 'read_write'
 		'user_id'      => iconic_get_user_id(), // Local user ID
-		'return_url'   => 'https://iconic-app.local/',
-		'callback_url' => 'https://iconic-app.local/callback.php', // Must be https
+		'return_url'   => $config['woocommerce']['return_url'], //'https://iconic-app.local/'
+		'callback_url' => $config['woocommerce']['callback_url'] // https://iconic-app.local/callback.php - Must be https
 	);
 
 	/**

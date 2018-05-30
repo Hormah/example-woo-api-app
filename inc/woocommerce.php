@@ -9,6 +9,7 @@ use Automattic\WooCommerce\Client;
  * @return \Automattic\WooCommerce\Client|bool
  */
 function iconic_api_connect() {
+	global $config;
 	static $connection;
 
 	if ( isset( $connection ) ) {
@@ -29,8 +30,8 @@ function iconic_api_connect() {
 		$keys['consumer_secret'],
 		array(
 			'wp_api'     => true,
-			'version'    => 'wc/v2',
-			'verify_ssl' => false, // Allow self-signed certificates (remove for prod)
+			'version'    => $config["woocommerce"]["api_version"], //'wc/v2'
+			'verify_ssl' => false // Allow self-signed certificates (remove for prod)
 		)
 	);
 

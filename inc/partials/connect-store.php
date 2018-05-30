@@ -24,10 +24,10 @@
 	<p>Please connect your WooCommerce store.</p>
 </div>
 
-<form action="http://iconic-app.local/connect.php" method="post">
+<form action="<?= iconic_get_app_url() ?>/connect.php" method="post">
 	<div class="form-group">
 		<label for="store_url">Store URL</label>
-		<input type="url" class="form-control" id="store_url" name="store_url" placeholder="E.g. https://example.com/">
+		<input type="url" class="form-control" id="store_url" name="store_url" placeholder="E.g. https://example.com/" value="https://wordpress.geckonet.local/">
 	</div>
 	<input type="hidden" name="token" value="<?php echo iconic_generate_form_token( 'iconic-connect' ); ?>">
 	<button type="submit" class="btn btn-default" name="iconic-connect">Connect</button>

@@ -5,18 +5,21 @@
  * it inside the $_POST global variable, in PHP you can access it using
  * $HTTP_RAW_POST_DATA (for old PHP versions) or file_get_contents('php://input');.
  */
-$post_data = file_get_contents("php://input");
+$post_data = file_get_contents("php://input"); //JSON data returned from WooCommerce
+
+file_put_contents("json.data", $post_data); //Debug Info
+//$post_data = file_get_contents("json.data");
 
 if ( empty( $post_data ) ) {
 	http_response_code( 400 );
-	die;
+	die("Data was empty!");
 }
 
 $post_data = json_decode( $post_data );
 
 if( empty( $post_data->key_id ) ) {
 	http_response_code( 400 );
-	die;
+	die("post_data->key_id isn't set!");
 }
 
 require_once( $_SERVER['DOCUMENT_ROOT'] . '/inc/setup.php' );

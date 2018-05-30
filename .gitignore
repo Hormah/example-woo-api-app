@@ -1,2 +1,5 @@
 config.ini
 /vendor
+.vscode/
+composer.phar
+json.data
